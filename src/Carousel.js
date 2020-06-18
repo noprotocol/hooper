@@ -462,22 +462,27 @@ export default {
         this.slidePrev();
       }
     },
+
+    // Start custom package code
+    // -------------------------------------------------
     onWheel(event) {
       event.preventDefault();
       if (now() - this.lastScrollTime < 200) {
-        return;
+        // get wheel direction
+        const value = event.wheelDelta || -event.deltaY;
+        const delta = sign(value);
+        if (delta === -1) {
+          this.slideNext();
+        }
+        if (delta === 1) {
+          this.slidePrev();
+        }
       }
-      // get wheel direction
       this.lastScrollTime = now();
-      const value = event.wheelDelta || -event.deltaY;
-      const delta = sign(value);
-      if (delta === -1) {
-        this.slideNext();
-      }
-      if (delta === 1) {
-        this.slidePrev();
-      }
     },
+    // -------------------------------------------------
+    // end custom package code
+
     addGroupListeners() {
       if (!this.group) {
         return;
