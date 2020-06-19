@@ -467,7 +467,7 @@ export default {
     // -------------------------------------------------
     onWheel(event) {
       event.preventDefault();
-      if (now() - this.lastScrollTime < 200) {
+      if (now() - this.lastScrollTime > 200) {
         // get wheel direction
         const value = event.wheelDelta || -event.deltaY;
         const delta = sign(value);
